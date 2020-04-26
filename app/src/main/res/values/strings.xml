@@ -15,10 +15,14 @@ Oziq-ovqatlarni buyurtma qilish va ularni Toshkent shahrida yetkazib berish xizm
     <string name="xa">Xa</string>
     <string name="yoq">Yo\'q</string>
     <string name="barcha_maydoni_toldiring">Iltimos barcha maydonlarni to\'ldiring</string>
-    <string name="plyus_belgisi">Raqam oldidan + belgisini qo\'ying</string>
     <string name="ism_tekshirish">Ismingiz eng kamida uchta harfdan iborat bo\'lishi kerak</string>
     <string name="ism_faqat_harf">Iltimos ismga faqat harf kiriting</string>
     <string name="parol_kamida_besh_harf">Parol eng kamida 5 ta son yoki harfdan iborat bo\'lishi kerak</string>
     <string name="tasdiqlash_xatosi">Parolingiz va tasdiqlash paroli bir xil emas</string>
-    <string name="ozbekiston_raqami_emas">Ushbu raqam O\'zbekiston raqami emas</string>
+    <string name="iltimos_kuting">Iltimos kuting</string>
+    <string name="oldin_royxatdan_otgan">Ushbu raqam olding ham ro\'yxatdan o\'tgan</string>
+    <string name="royxatdan_otmagan_raqam_kiriting">Bu raqam avval ham ro\'yxatdan o\'tgan</string>
+    <string name="telefon_kiriting">Iltimos telefon raqam kiriting!</string>
+    <string name="parol_kiriting">Iltimos parolni kiriting</string>
+    <string name="raqamni_tekshiring">Telefon raqamingizni qaytadan tekshiring</string>
 </resources>

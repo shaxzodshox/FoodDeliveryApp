@@ -3,6 +3,9 @@ package com.shlsoft.fooddelivery.actvities;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.Editable;
+import android.text.Selection;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,10 +52,10 @@ public class SignInActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if (edt_phone.getText().toString().isEmpty()) {
-                    edt_phone.setError("Iltimos telefon raqam kiriting!");
+                    edt_phone.setError(getString(R.string.telefon_kiriting));
                     edt_phone.requestFocus();
                 } else if (edt_password.getText().toString().isEmpty()) {
-                    edt_password.setError("Iltimos parolni kiriting");
+                    edt_password.setError(getString(R.string.parol_kiriting));
                     edt_password.requestFocus();
                 } else {
                     String phone = edt_phone.getText().toString();
@@ -60,18 +63,17 @@ public class SignInActivity extends BaseActivity {
 
                     signIn(phone, password);
                 }
-
-
             }
         });
     }
 
     private void signIn(final String phone, final String password) {
-
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Iltimos kuting...");
+        progressDialog.setMessage(getString(R.string.iltimos_kuting));
         progressDialog.setCancelable(false);
         progressDialog.show();
+
+        final String phoneWithoutPlus = phone.replace("+","");
 
         table_user.addValueEventListener(new ValueEventListener() {
             @Override
@@ -79,9 +81,9 @@ public class SignInActivity extends BaseActivity {
                 progressDialog.dismiss();
 
                 //Check if user not exists in database
-                if (dataSnapshot.child(phone).exists()) {
+                if (dataSnapshot.child(phoneWithoutPlus).exists()) {
                     //Get user information
-                    User user = dataSnapshot.child(phone).getValue(User.class);
+                    User user = dataSnapshot.child(phoneWithoutPlus).getValue(User.class);
                     if (user.getPassword().equals(password)) {
                         Toast.makeText(getApplicationContext(), "Successful", Toast.LENGTH_SHORT).show();
                     } else {
@@ -124,6 +126,26 @@ public class SignInActivity extends BaseActivity {
     private void phoneEditTextSetup() {
         edt_phone.setText("+998");
         edt_phone.requestFocus();
+
+        edt_phone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(!s.toString().startsWith("+998")){
+                    edt_phone.setText("+998");
+                    Selection.setSelection(edt_phone.getText(), edt_phone.getText().toString().length());
+                }
+            }
+        });
     }
 
     private void initViews() {
