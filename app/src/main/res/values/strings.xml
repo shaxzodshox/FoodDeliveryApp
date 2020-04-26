@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">FoodDelivery</string>
+    <string name="slogan">
+Oziq-ovqatlarni buyurtma qilish va ularni Toshkent shahrida yetkazib berish xizmati</string>
+    <string name="ro_yxatdan_o_tish">Ro\'yxatdan o\'tish</string>
+    <string name="kirish">Kirish</string>
+    <string name="telefon_hint">Telefon</string>
+    <string name="password">Parol</string>
+    <string name="foydalanuvchi_topilmadi">Ushbu raqam ro\'yxatdan o\'tmagan</string>
+    <string name="parol_xato">Parol noto\'gri. Iltimos qaytadan kiriting</string>
 </resources>

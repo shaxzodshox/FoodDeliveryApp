@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="logo_w">200dp</dimen>
+    <dimen name="edt_txt_size">30sp</dimen>
+
+</resources>
