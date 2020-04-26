@@ -5,13 +5,20 @@ Oziq-ovqatlarni buyurtma qilish va ularni Toshkent shahrida yetkazib berish xizm
     <string name="ro_yxatdan_o_tish">Ro\'yxatdan o\'tish</string>
     <string name="kirish">Kirish</string>
     <string name="telefon_hint">Telefon</string>
-    <string name="password">Parol</string>
+    <string name="parol">Parol</string>
     <string name="foydalanuvchi_topilmadi">Ushbu raqam ro\'yxatdan o\'tmagan</string>
     <string name="parol_xato">Parol noto\'gri. Iltimos qaytadan kiriting</string>
     <string name="ismingiz">Ismingiz</string>
-    <string name="confirm_password">Parolni qayta kiriting</string>
+    <string name="parol_tasdiqlash">Parolni tasdiqlash</string>
     <string name="chiqish">Chiqish</string>
     <string name="chiqishni_xohlaysizmi">Chindan ham ilovadan chiqmochimisiz?</string>
     <string name="xa">Xa</string>
     <string name="yoq">Yo\'q</string>
+    <string name="barcha_maydoni_toldiring">Iltimos barcha maydonlarni to\'ldiring</string>
+    <string name="plyus_belgisi">Raqam oldidan + belgisini qo\'ying</string>
+    <string name="ism_tekshirish">Ismingiz eng kamida uchta harfdan iborat bo\'lishi kerak</string>
+    <string name="ism_faqat_harf">Iltimos ismga faqat harf kiriting</string>
+    <string name="parol_kamida_besh_harf">Parol eng kamida 5 ta son yoki harfdan iborat bo\'lishi kerak</string>
+    <string name="tasdiqlash_xatosi">Parolingiz va tasdiqlash paroli bir xil emas</string>
+    <string name="ozbekiston_raqami_emas">Ushbu raqam O\'zbekiston raqami emas</string>
 </resources>

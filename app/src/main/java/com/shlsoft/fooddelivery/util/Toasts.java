@@ -11,6 +11,10 @@ public class Toasts {
         Toasty.success(MyApplication.getInstance(),toast_message, Toast.LENGTH_SHORT).show();
     }
 
+    public static void showWarningToast(String toast_message){
+        Toasty.warning(MyApplication.getInstance(),toast_message, Toast.LENGTH_SHORT).show();
+    }
+
     public static void showErrorToast(String toast_message){
         Toasty.error(MyApplication.getInstance(),toast_message, Toast.LENGTH_SHORT).show();
     }
