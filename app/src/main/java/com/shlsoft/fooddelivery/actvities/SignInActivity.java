@@ -1,14 +1,13 @@
 package com.shlsoft.fooddelivery.actvities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -17,12 +16,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.shlsoft.fooddelivery.R;
+import com.shlsoft.fooddelivery.app.BaseActivity;
 import com.shlsoft.fooddelivery.model.User;
+import com.shlsoft.fooddelivery.service.ConnectivityReceiver;
 
 import es.dmoral.toasty.Toasty;
 import info.hoang8f.widget.FButton;
 
-public class SignInActivity extends AppCompatActivity {
+public class SignInActivity extends BaseActivity {
+
+    ConnectivityReceiver receiver = new ConnectivityReceiver();
 
     private MaterialEditText edt_phone, edt_password;
     private TextView tv_error;
@@ -31,7 +34,6 @@ public class SignInActivity extends AppCompatActivity {
     //Firebase
     private FirebaseDatabase database;
     private DatabaseReference table_user;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,6 +136,4 @@ public class SignInActivity extends AppCompatActivity {
         btn_signIn = findViewById(R.id.btnSignIn);
         tv_error = findViewById(R.id.tv_error);
     }
-
-
 }

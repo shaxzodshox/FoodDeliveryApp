@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="logo_w">150dp</dimen>
-    <dimen name="edt_txt_size">26sp</dimen>
+    <dimen name="edt_txt_size">16sp</dimen>
 
 </resources>

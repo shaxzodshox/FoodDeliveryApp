@@ -8,4 +8,6 @@ Oziq-ovqatlarni buyurtma qilish va ularni Toshkent shahrida yetkazib berish xizm
     <string name="password">Parol</string>
     <string name="foydalanuvchi_topilmadi">Ushbu raqam ro\'yxatdan o\'tmagan</string>
     <string name="parol_xato">Parol noto\'gri. Iltimos qaytadan kiriting</string>
+    <string name="ismingiz">Ismingiz</string>
+    <string name="confirm_password">Parolni qayta kiriting</string>
 </resources>

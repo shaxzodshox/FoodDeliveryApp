@@ -1,7 +1,5 @@
 package com.shlsoft.fooddelivery.actvities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -9,11 +7,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.shlsoft.fooddelivery.R;
+import com.shlsoft.fooddelivery.app.BaseActivity;
 
 import info.hoang8f.widget.FButton;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+import static maes.tech.intentanim.CustomIntent.customType;
 
+public class MainActivity extends BaseActivity implements View.OnClickListener{
     private FButton btnSignUp, btnSignIn;
     private TextView tv_slogan;
 
@@ -48,12 +48,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnSignUp:
-                // TODO: 26.04.2020 Implement sign up here
+                startActivity(new Intent(getApplicationContext(),SignUpActivity.class));
+                customType(MainActivity.this,"left-to-right");
                 break;
             case R.id.btnSignIn:
                 startActivity(new Intent(getApplicationContext(),SignInActivity.class));
+                customType(MainActivity.this,"left-to-right");
                 break;
         }
-
     }
 }
