@@ -1,10 +1,13 @@
 package com.shlsoft.fooddelivery.actvities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.shlsoft.fooddelivery.R;
 import com.shlsoft.fooddelivery.app.BaseActivity;
@@ -56,5 +59,27 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 customType(MainActivity.this,"left-to-right");
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        showExitDialog();
+    }
+
+    private void showExitDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.chiqish)
+                .setCancelable(false)
+                .setMessage(R.string.chiqishni_xohlaysizmi)
+                .setPositiveButton(R.string.xa, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        finishAffinity();
+                    }
+                })
+                .setNegativeButton(R.string.yoq, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).show();
     }
 }

@@ -18,14 +18,13 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 import com.shlsoft.fooddelivery.R;
 import com.shlsoft.fooddelivery.app.BaseActivity;
 import com.shlsoft.fooddelivery.model.User;
-import com.shlsoft.fooddelivery.service.ConnectivityReceiver;
+import com.shlsoft.fooddelivery.util.Toasts;
 
-import es.dmoral.toasty.Toasty;
 import info.hoang8f.widget.FButton;
 
-public class SignInActivity extends BaseActivity {
+import static maes.tech.intentanim.CustomIntent.customType;
 
-    ConnectivityReceiver receiver = new ConnectivityReceiver();
+public class SignInActivity extends BaseActivity {
 
     private MaterialEditText edt_phone, edt_password;
     private TextView tv_error;
@@ -49,15 +48,13 @@ public class SignInActivity extends BaseActivity {
         btn_signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(edt_phone.getText().toString().isEmpty()){
-                   edt_phone.setError("Iltimos telefon raqam kiriting!");
-                   edt_phone.requestFocus();
-                }
-                else if(edt_password.getText().toString().isEmpty()){
+                if (edt_phone.getText().toString().isEmpty()) {
+                    edt_phone.setError("Iltimos telefon raqam kiriting!");
+                    edt_phone.requestFocus();
+                } else if (edt_password.getText().toString().isEmpty()) {
                     edt_password.setError("Iltimos parolni kiriting");
                     edt_password.requestFocus();
-                }
-                else{
+                } else {
                     String phone = edt_phone.getText().toString();
                     String password = edt_password.getText().toString();
 
@@ -73,6 +70,7 @@ public class SignInActivity extends BaseActivity {
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Iltimos kuting...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
 
         table_user.addValueEventListener(new ValueEventListener() {
@@ -81,13 +79,12 @@ public class SignInActivity extends BaseActivity {
                 progressDialog.dismiss();
 
                 //Check if user not exists in database
-                if(dataSnapshot.child(phone).exists()) {
+                if (dataSnapshot.child(phone).exists()) {
                     //Get user information
                     User user = dataSnapshot.child(phone).getValue(User.class);
                     if (user.getPassword().equals(password)) {
                         Toast.makeText(getApplicationContext(), "Successful", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
+                    } else {
                         //Password is wrong
                         edt_password.setText("");
                         edt_password.requestFocus();
@@ -103,11 +100,10 @@ public class SignInActivity extends BaseActivity {
                             }
                         }.start();
                     }
-                }
-                else{
+                } else {
                     //if the user does not exists
                     progressDialog.dismiss();
-                    Toasty.error(getApplicationContext(), R.string.foydalanuvchi_topilmadi,Toast.LENGTH_SHORT).show();
+                    Toasts.showErrorToast(getString(R.string.foydalanuvchi_topilmadi));
                 }
 
             }
@@ -135,5 +131,11 @@ public class SignInActivity extends BaseActivity {
         edt_password = findViewById(R.id.edt_password);
         btn_signIn = findViewById(R.id.btnSignIn);
         tv_error = findViewById(R.id.tv_error);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        customType(SignInActivity.this,"right-to-left");
     }
 }
