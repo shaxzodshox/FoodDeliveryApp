@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    tools:context=".actvities.PhoneVerificationActivity">
+
+    <LinearLayout
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_verification_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/verification_info_text_size"
+            android:textAlignment="center"
+            />
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/sms_verification"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/margin_micro"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Iltimos SMS kodni kiriting"
+            android:textSize="@dimen/edt_txt_size"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            />
+
+        <com.swiftsynq.otpcustomview.CustomOtpView
+            android:id="@+id/otpView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:cursorVisible="false"
+            app:cursorColor="@color/colorAccent"
+            app:cursorWidth="4dp"
+            app:itemCount="6"
+            app:itemHeight="30dp"
+            app:itemRadius="2dp"
+            app:itemSpacing="8dp"
+            app:itemWidth="30dp"
+            android:layout_gravity="center_horizontal"
+            android:inputType="number"
+            android:padding="@dimen/margin_normal"
+            android:textColor="@android:color/white"
+            android:textSize="21sp"
+            android:textColorHint="@android:color/white"
+            app:lineColor="@android:color/white"
+            app:lineWidth="3dp"
+            app:viewType="rectangle" />
+
+
+        <TextView
+            android:id="@+id/tv_sms_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sms_kod_notogri"
+            android:textColor="@android:color/white"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:visibility="invisible"/>
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/btnVerify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_medium"
+            android:background="@color/btnSignActive"
+            android:text="@string/tasdiqlash"
+            android:textAllCaps="false"
+            android:textColor="@color/bg_color"
+            app:cornerRadius="4dp"
+            app:fButtonColor="@android:color/white"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>

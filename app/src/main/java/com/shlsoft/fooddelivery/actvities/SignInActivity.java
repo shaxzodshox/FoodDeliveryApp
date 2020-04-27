@@ -1,6 +1,7 @@
 package com.shlsoft.fooddelivery.actvities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
@@ -8,7 +9,6 @@ import android.text.Selection;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -21,7 +21,6 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 import com.shlsoft.fooddelivery.R;
 import com.shlsoft.fooddelivery.app.BaseActivity;
 import com.shlsoft.fooddelivery.model.User;
-import com.shlsoft.fooddelivery.util.Toasts;
 
 import info.hoang8f.widget.FButton;
 
@@ -85,37 +84,39 @@ public class SignInActivity extends BaseActivity {
                     //Get user information
                     User user = dataSnapshot.child(phoneWithoutPlus).getValue(User.class);
                     if (user.getPassword().equals(password)) {
-                        Toast.makeText(getApplicationContext(), "Successful", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(),MenuActivity.class));
                     } else {
                         //Password is wrong
                         edt_password.setText("");
                         edt_password.requestFocus();
-                        tv_error.setVisibility(View.VISIBLE);
-                        new CountDownTimer(2000, 1000) {
-                            @Override
-                            public void onTick(long millisUntilFinished) {
-                            }
-
-                            @Override
-                            public void onFinish() {
-                                tv_error.setVisibility(View.INVISIBLE);
-                            }
-                        }.start();
+                        showError(getString(R.string.parol_xato));
                     }
                 } else {
                     //if the user does not exists
                     progressDialog.dismiss();
-                    Toasts.showErrorToast(getString(R.string.foydalanuvchi_topilmadi));
+                    showError(getString(R.string.foydalanuvchi_topilmadi));
                 }
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
 
+    }
+
+    private void showError(String error_msg) {
+        tv_error.setText(error_msg);
+        tv_error.setVisibility(View.VISIBLE);
+        new CountDownTimer(2000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+            }
+
+            @Override
+            public void onFinish() {
+                tv_error.setVisibility(View.INVISIBLE);
+            }
+        }.start();
     }
 
     private void initFirebaseDatabase() {

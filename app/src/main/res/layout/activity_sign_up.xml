@@ -4,80 +4,80 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@color/bg_color"
     tools:context=".actvities.SignUpActivity">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginStart="@dimen/margin_medium"
         android:layout_marginEnd="@dimen/margin_medium"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:orientation="vertical">
 
         <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/edt_phone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/telefon_hint"
-        android:textColorHint="@android:color/white"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/edt_txt_size"
-        android:inputType="phone"
-        android:maxLength="13"
-        app:met_baseColor="@android:color/white"
-        app:met_floatingLabel="highlight"
-        app:met_maxCharacters="13"
-        app:met_primaryColor="@android:color/white"
-        app:met_singleLineEllipsis="true"
-        />
+            android:id="@+id/edt_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/telefon_hint"
+            android:inputType="phone"
+            android:maxLength="13"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:textSize="@dimen/edt_txt_size"
+            app:met_baseColor="@android:color/white"
+            app:met_errorColor="@android:color/white"
+            app:met_floatingLabel="highlight"
+            app:met_maxCharacters="13"
+            app:met_primaryColor="@android:color/white"
+            app:met_singleLineEllipsis="true" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edt_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/ismingiz"
-            android:textColorHint="@android:color/white"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/edt_txt_size"
             android:inputType="textPersonName"
             android:maxLength="13"
+            app:met_errorColor="@android:color/white"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:textSize="@dimen/edt_txt_size"
             app:met_baseColor="@android:color/white"
             app:met_floatingLabel="highlight"
             app:met_maxCharacters="13"
             app:met_primaryColor="@android:color/white"
-            app:met_singleLineEllipsis="true"
-            />
+            app:met_singleLineEllipsis="true" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edt_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/parol"
-            android:textColorHint="@android:color/white"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/edt_txt_size"
             android:inputType="textPassword"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:textSize="@dimen/edt_txt_size"
+            app:met_errorColor="@android:color/white"
             app:met_baseColor="@android:color/white"
             app:met_floatingLabel="highlight"
             app:met_primaryColor="@android:color/white"
-            app:met_singleLineEllipsis="true"
-            />
+            app:met_singleLineEllipsis="true" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edt_confirm_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/parol_tasdiqlash"
-            android:textColorHint="@android:color/white"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/edt_txt_size"
             android:inputType="textPassword"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:textSize="@dimen/edt_txt_size"
             app:met_baseColor="@android:color/white"
             app:met_floatingLabel="highlight"
+            app:met_errorColor="@android:color/white"
             app:met_primaryColor="@android:color/white"
-            app:met_singleLineEllipsis="true"
-            />
+            app:met_singleLineEllipsis="true" />
 
     </LinearLayout>
 
@@ -85,14 +85,13 @@
         android:id="@+id/btnSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/margin_medium"
         android:background="@color/btnSignActive"
         android:text="@string/ro_yxatdan_o_tish"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         app:cornerRadius="4dp"
-        app:fButtonColor="@color/btnSignUp"
-        android:layout_alignParentBottom="true"
-        />
+        app:fButtonColor="@color/btnSignUp" />
 
 </RelativeLayout>

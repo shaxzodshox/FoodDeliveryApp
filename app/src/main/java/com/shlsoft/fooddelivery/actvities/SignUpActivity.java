@@ -1,6 +1,7 @@
 package com.shlsoft.fooddelivery.actvities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Selection;
@@ -22,6 +23,8 @@ import com.shlsoft.fooddelivery.util.Toasts;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static maes.tech.intentanim.CustomIntent.customType;
 
 public class SignUpActivity extends BaseActivity {
 
@@ -97,13 +100,14 @@ public class SignUpActivity extends BaseActivity {
                                     binding.edtPhone.setSelectAllOnFocus(true);
                                     binding.edtPhone.setError(getString(R.string.royxatdan_otmagan_raqam_kiriting));
                                     binding.edtPhone.requestFocus();
-                                    Toasts.showErrorToast(getString(R.string.oldin_royxatdan_otgan));
                                 } else {
-                                    User user = new User
-                                            (binding.edtName.getText().toString(), binding.edtPassword.getText().toString());
-                                    table_user.child(phone).setValue(user);
-                                    Toasts.showSuccessToast("Muvaffaqiyatli ro'yxatdan o'tdingiz");
-                                    finish();
+                                    Intent intent = new Intent(SignUpActivity.this,PhoneVerificationActivity.class);
+                                    intent.putExtra("phone",binding.edtPhone.getText().toString());
+                                    intent.putExtra("name",binding.edtName.getText().toString());
+                                    intent.putExtra("password",binding.edtPassword.getText().toString());
+                                    startActivity(intent);
+                                    SignUpActivity.this.finish();
+                                    customType(SignUpActivity.this,"left-to-right");
                                 }
                             }
 
@@ -144,5 +148,11 @@ public class SignUpActivity extends BaseActivity {
     private void initFirebase() {
         firebaseDatabase = FirebaseDatabase.getInstance();
         table_user = firebaseDatabase.getReference("User");
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        customType(SignUpActivity.this,"right-to-left");
     }
 }

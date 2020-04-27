@@ -26,4 +26,7 @@
     <!--Height of the logo-->
     <dimen name="logo_w">200dp</dimen>
     <dimen name="edt_txt_size">24sp</dimen>
+
+    <!--verification text_code-->
+    <dimen name="verification_info_text_size">16sp</dimen>
 </resources>

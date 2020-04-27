@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@color/bg_color"
     tools:context=".actvities.SignInActivity">
 
     <LinearLayout
@@ -25,6 +25,7 @@
             android:textSize="@dimen/edt_txt_size"
             android:inputType="phone"
             android:maxLength="13"
+            app:met_errorColor="@android:color/white"
             app:met_baseColor="@android:color/white"
             app:met_floatingLabel="highlight"
             app:met_maxCharacters="13"
@@ -40,6 +41,7 @@
             android:textColorHint="@android:color/white"
             android:textColor="@android:color/white"
             android:textSize="@dimen/edt_txt_size"
+            app:met_errorColor="@android:color/white"
             android:inputType="textPassword"
             app:met_baseColor="@android:color/white"
             app:met_floatingLabel="highlight"
@@ -51,8 +53,7 @@
             android:id="@+id/tv_error"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/parol_xato"
-            android:textColor="@android:color/holo_red_light"
+            android:textColor="@android:color/white"
             android:textAlignment="center"
             android:textStyle="bold"
             android:visibility="invisible"

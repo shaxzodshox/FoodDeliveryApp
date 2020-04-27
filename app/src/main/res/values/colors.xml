@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#00251a</color>
     <color name="colorAccent">#39796b</color>
 
+    <color name="bg_color">#D60665</color>
+
     <color name="btnSignUp">#39796b</color>
     <color name="btnSignActive">#A9D440</color>
 </resources>

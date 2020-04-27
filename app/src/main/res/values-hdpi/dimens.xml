@@ -3,4 +3,6 @@
     <dimen name="logo_w">150dp</dimen>
     <dimen name="edt_txt_size">16sp</dimen>
 
+    <dimen name="verification_info_text_size">12sp</dimen>
+
 </resources>
