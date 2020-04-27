@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.shlsoft.fooddelivery.R;
 import com.shlsoft.fooddelivery.app.BaseActivity;
+import com.shlsoft.fooddelivery.common.Common;
 import com.shlsoft.fooddelivery.model.User;
 import com.shlsoft.fooddelivery.util.Toasts;
 import com.swiftsynq.otpcustomview.CustomOtpView;
@@ -136,6 +137,8 @@ public class PhoneVerificationActivity extends BaseActivity {
 
         User user = new User(name,password);
         table_user.child(phoneWithoutPlus).setValue(user);
+
+        Common.current_user = user; //Keep this user as a current user
     }
 
     private void sendVerificationCode(String phoneNumber) {

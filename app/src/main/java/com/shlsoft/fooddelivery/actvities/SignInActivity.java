@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.shlsoft.fooddelivery.R;
 import com.shlsoft.fooddelivery.app.BaseActivity;
+import com.shlsoft.fooddelivery.common.Common;
 import com.shlsoft.fooddelivery.model.User;
 
 import info.hoang8f.widget.FButton;
@@ -84,7 +85,10 @@ public class SignInActivity extends BaseActivity {
                     //Get user information
                     User user = dataSnapshot.child(phoneWithoutPlus).getValue(User.class);
                     if (user.getPassword().equals(password)) {
+                        Common.current_user = user; //store logged in user
                         startActivity(new Intent(getApplicationContext(),MenuActivity.class));
+                        SignInActivity.this.finish();
+                        customType(SignInActivity.this,"left_to_right");
                     } else {
                         //Password is wrong
                         edt_password.setText("");

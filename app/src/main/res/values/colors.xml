@@ -8,4 +8,6 @@
 
     <color name="btnSignUp">#39796b</color>
     <color name="btnSignActive">#A9D440</color>
+
+    <color name="overlay_background">#91000000</color>
 </resources>

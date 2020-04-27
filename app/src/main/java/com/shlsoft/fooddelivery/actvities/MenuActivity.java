@@ -1,9 +1,14 @@
 package com.shlsoft.fooddelivery.actvities;
 
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -11,30 +16,36 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.DialogInterface;
-import android.os.Bundle;
-import android.view.MenuItem;
-
 import com.google.android.material.navigation.NavigationView;
 import com.shlsoft.fooddelivery.R;
+import com.shlsoft.fooddelivery.app.BaseActivity;
+import com.shlsoft.fooddelivery.common.Common;
 import com.shlsoft.fooddelivery.fragment.CartFragment;
 import com.shlsoft.fooddelivery.fragment.MenuFragment;
 import com.shlsoft.fooddelivery.fragment.OrderFragment;
 
-public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MenuActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
 
+
+    //Name of the current user
+    private TextView tv_username;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        //Default fragment and default title when the page is launched
+        setTitle(getString(R.string.taomlar));
         loadFragment(new MenuFragment());
 
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -46,6 +57,15 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        setUserName();
+    }
+
+    private void setUserName() {
+        //Set username in navigation drawer
+        View headerView = navigationView.getHeaderView(0);
+        tv_username = headerView.findViewById(R.id.tv_username);
+        tv_username.setText(getString(R.string.buyurtmachi) + Common.current_user.getName());
     }
 
     private void showExitDialog() {
@@ -74,12 +94,15 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.nav_menu:
+                setTitle(getString(R.string.taomlar));
                 loadFragment(new MenuFragment());
                 break;
             case R.id.nav_cart:
+                setTitle(getString(R.string.xarid_kartasi));
                 loadFragment(new CartFragment());
                 break;
             case R.id.nav_orders:
+                setTitle(getString(R.string.buyurtmalar));
                 loadFragment(new OrderFragment());
                 break;
             case R.id.nav_sign_out:

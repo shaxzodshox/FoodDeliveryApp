@@ -36,9 +36,12 @@ Oziq-ovqatlarni buyurtma qilish va ularni Toshkent shahrida yetkazib berish xizm
     <string name="open">Open navigation</string>
     <string name="close">Close navigation</string>
     <string name="taomlar_menyusi">Taomlar menyusi</string>
-    <string name="xarid_kartasi">Xarid kartasi</string>
+    <string name="xarid_kartasi">Xarid savati</string>
     <string name="buyurtmalar">Buyurtmalar</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="taomlar">Taomlar</string>
+    <string name="joriy_foydalanuvchi">\"Joriy foydalanuvchi \"</string>
+    <string name="buyurtmachi">"Buyurtmachi: "</string>
 </resources>
