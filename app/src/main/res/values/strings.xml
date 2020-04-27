@@ -32,4 +32,13 @@ Oziq-ovqatlarni buyurtma qilish va ularni Toshkent shahrida yetkazib berish xizm
     <string name="sms_kod_kiriting">Iltimos SMS kodni kiriting</string>
     <string name="sms_kod_notogri">SMS kod notog\'ri</string>
     <string name="tizimda_xatolik">Tizimda xatolik</string>
+
+    <string name="open">Open navigation</string>
+    <string name="close">Close navigation</string>
+    <string name="taomlar_menyusi">Taomlar menyusi</string>
+    <string name="xarid_kartasi">Xarid kartasi</string>
+    <string name="buyurtmalar">Buyurtmalar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
