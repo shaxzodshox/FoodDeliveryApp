@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -18,11 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.shlsoft.fooddelivery.R;
 import com.shlsoft.fooddelivery.interfaces.ItemClickListener;
-import com.shlsoft.fooddelivery.model.Category;
 import com.shlsoft.fooddelivery.model.Food;
-import com.shlsoft.fooddelivery.util.Toasts;
 import com.shlsoft.fooddelivery.view_holder.FoodViewHolder;
-import com.shlsoft.fooddelivery.view_holder.MenuViewHolder;
 import com.squareup.picasso.Picasso;
 
 public class FoodListActivity extends AppCompatActivity {
@@ -70,7 +66,11 @@ public class FoodListActivity extends AppCompatActivity {
                 foodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(getApplicationContext(),""+clicked_food.getName(),Toast.LENGTH_SHORT).show();
+                        //Start new activity
+                        Intent foodDetail = new Intent(FoodListActivity.this, FoodDetailActivity.class);
+                        foodDetail.putExtra("foodId",food_adapter.getRef(position).getKey());
+                        startActivity(foodDetail);
+                        finish();
                     }
                 });
 

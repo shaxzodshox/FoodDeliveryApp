@@ -14,4 +14,15 @@
         <item name="android:background">@null</item>
     </style>
 
+    
+    <style name="CollapsedAppBar" parent="@style/TextAppearance.AppCompat.Medium">
+        <item name="textSize">24sp</item>
+        <item name="textColor">@android:color/white</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="ExpandedAppBar" parent="@style/TextAppearance.AppCompat.Title">
+        <item name="textColor">@color/colorPrimary</item>
+        <item name="android:textStyle">normal</item>
+    </style>
 </resources>

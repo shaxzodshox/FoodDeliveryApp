@@ -44,4 +44,7 @@ Oziq-ovqatlarni buyurtma qilish va ularni Toshkent shahrida yetkazib berish xizm
     <string name="taomlar">Taomlar</string>
     <string name="joriy_foydalanuvchi">\"Joriy foydalanuvchi \"</string>
     <string name="buyurtmachi">"Buyurtmachi: "</string>
+    <string name="_1000">1000</string>
+    <string name="taom_nomi">Taom nomi</string>
+    <string name="taom_haqida">Taom haqida</string>
 </resources>

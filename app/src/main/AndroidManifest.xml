@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".actvities.FoodListActivity"></activity>
+        <activity android:name=".actvities.FoodDetailActivity"></activity>
+        <activity android:name=".actvities.FoodListActivity" />
         <activity android:name=".actvities.PhoneVerificationActivity" />
         <activity android:name=".actvities.MenuActivity" />
         <activity android:name=".actvities.SignUpActivity" />
