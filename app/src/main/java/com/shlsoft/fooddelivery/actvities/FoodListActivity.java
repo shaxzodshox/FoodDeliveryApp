@@ -16,12 +16,13 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.shlsoft.fooddelivery.R;
+import com.shlsoft.fooddelivery.app.BaseActivity;
 import com.shlsoft.fooddelivery.interfaces.ItemClickListener;
 import com.shlsoft.fooddelivery.model.Food;
 import com.shlsoft.fooddelivery.view_holder.FoodViewHolder;
 import com.squareup.picasso.Picasso;
 
-public class FoodListActivity extends AppCompatActivity {
+public class FoodListActivity extends BaseActivity {
 
     private RecyclerView recycler_food;
     private RecyclerView.LayoutManager layoutManager;

@@ -17,13 +17,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.shlsoft.fooddelivery.R;
+import com.shlsoft.fooddelivery.app.BaseActivity;
 import com.shlsoft.fooddelivery.db.Database;
 import com.shlsoft.fooddelivery.model.Food;
 import com.shlsoft.fooddelivery.model.Order;
 import com.shlsoft.fooddelivery.util.Toasts;
 import com.squareup.picasso.Picasso;
 
-public class FoodDetailActivity extends AppCompatActivity {
+public class FoodDetailActivity extends BaseActivity {
 
     private TextView food_name, food_price, food_description;
     private ImageView food_image;

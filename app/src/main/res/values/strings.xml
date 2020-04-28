@@ -52,4 +52,10 @@ Oziq-ovqatlarni buyurtma qilish va ularni Toshkent shahrida yetkazib berish xizm
     <string name="buyurtma_qilish">Buyurtma qilish</string>
     <string name="_0_sum">0 sum</string>
     <string name="sum">sum</string>
+    <string name="yana_bir_qadam">Yana bir qadam!</string>
+    <string name="manzil_kiriting">Iltimos manzilni kiriting</string>
+    <string name="buyurtma">Buyurtma qilish</string>
+    <string name="qaytish">Qaytish</string>
+    <string name="yetkazish_manzilini_kiriting">Iltimos yetkazib berish joyini kiriting</string>
+    <string name="buyurtma_uchun_rahmat">Buyurtmangiz uchun rahmat!</string>
 </resources>
