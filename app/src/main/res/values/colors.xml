@@ -10,4 +10,5 @@
     <color name="btnSignActive">#A9D440</color>
 
     <color name="overlay_background">#91000000</color>
+    <color name="overlay_yellow">#AAFF9800</color>
 </resources>

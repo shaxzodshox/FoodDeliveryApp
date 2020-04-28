@@ -10,24 +10,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.shlsoft.fooddelivery.R;
 import com.shlsoft.fooddelivery.interfaces.ItemClickListener;
 
-public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    public TextView txtMenuName;
-    public ImageView imgMenu;
+public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+    public TextView txtFoodName;
+    public ImageView imgFood;
 
     private ItemClickListener listener;
 
-    public MenuViewHolder(@NonNull View itemView) {
+    public FoodViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        txtMenuName = itemView.findViewById(R.id.tv_menu);
-        imgMenu = itemView.findViewById(R.id.menu_image);
-
-        itemView.setOnClickListener(this);
+        txtFoodName = itemView.findViewById(R.id.tv_food);
+        imgFood = itemView.findViewById(R.id.food_image);
     }
 
-        public void setItemClickListener(ItemClickListener itemClickListener) {
-            this.listener = itemClickListener;
-        }
+    public void setItemClickListener(ItemClickListener itemClickListener) {
+        this.listener = itemClickListener;
+    }
 
     @Override
     public void onClick(View v) {

@@ -1,5 +1,6 @@
 package com.shlsoft.fooddelivery.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.shlsoft.fooddelivery.R;
+import com.shlsoft.fooddelivery.actvities.FoodListActivity;
 import com.shlsoft.fooddelivery.interfaces.ItemClickListener;
 import com.shlsoft.fooddelivery.model.Category;
 import com.shlsoft.fooddelivery.view_holder.MenuViewHolder;
@@ -53,6 +55,8 @@ public class MenuFragment extends Fragment {
 
         recycler_menu = view.findViewById(R.id.recyclerview);
         recycler_menu.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(getContext());
+        recycler_menu.setLayoutManager(layoutManager);
 
         //InitFirebase
         databaseReference = FirebaseDatabase.getInstance().getReference("Category");
@@ -67,12 +71,14 @@ public class MenuFragment extends Fragment {
                 menuViewHolder.txtMenuName.setText(category.getName());
                 Picasso.get().load(category.getImage()).into(menuViewHolder.imgMenu);
 
-                final Category clickItem = category;
-
                 menuViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(getContext(),""+clickItem.getName(),Toast.LENGTH_SHORT).show();
+                       //Get categoryId and send it to new activity
+                        Intent foodList = new Intent(getContext(), FoodListActivity.class);
+                        //Because CategoryId is key,so we just get key of this item
+                        foodList.putExtra("categoryId",adapter.getRef(position).getKey());
+                        startActivity(foodList);
                     }
                 });
             }
@@ -85,9 +91,6 @@ public class MenuFragment extends Fragment {
                 return new MenuViewHolder(view);
             }
         };
-
-        layoutManager = new LinearLayoutManager(getContext());
-        recycler_menu.setLayoutManager(layoutManager);
         adapter.startListening();
         recycler_menu.setAdapter(adapter);
     }

@@ -4,5 +4,4 @@
     <solid android:color="@color/overlay_background"/>
 
     <corners android:radius="8dp"/>
-
 </shape>

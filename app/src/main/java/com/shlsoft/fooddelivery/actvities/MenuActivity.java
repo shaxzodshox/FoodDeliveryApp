@@ -119,4 +119,10 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
         transaction.replace(R.id.frame_container,fragment);
         transaction.commit();
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        overridePendingTransition(0,0);
+    }
 }

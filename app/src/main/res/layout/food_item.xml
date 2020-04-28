@@ -12,20 +12,19 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/menu_image"
+            android:id="@+id/food_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/img_placeholder" />
 
         <TextView
-            android:id="@+id/tv_menu"
+            android:id="@+id/tv_food"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/menu_image"
-            android:background="@color/overlay_yellow"
+            android:layout_alignBottom="@id/food_image"
+            android:background="@drawable/overlay_bg"
             android:paddingTop="8dp"
-            android:text="Food"
             android:paddingBottom="8dp"
             android:textAlignment="center"
             android:textColor="@android:color/white"
