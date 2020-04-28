@@ -15,9 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.shlsoft.fooddelivery.R;
+import com.shlsoft.fooddelivery.actvities.CartActivity;
 import com.shlsoft.fooddelivery.actvities.FoodListActivity;
 import com.shlsoft.fooddelivery.interfaces.ItemClickListener;
 import com.shlsoft.fooddelivery.model.Category;
@@ -36,6 +38,8 @@ public class MenuFragment extends Fragment {
     private RecyclerView recycler_menu;
     private RecyclerView.LayoutManager layoutManager;
 
+    private FloatingActionButton fab_cart;
+
     DatabaseReference databaseReference;
 
     FirebaseRecyclerOptions<Category> category_options;
@@ -52,6 +56,8 @@ public class MenuFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        fab_cart = view.findViewById(R.id.fab_cart);
 
         recycler_menu = view.findViewById(R.id.recyclerview);
         recycler_menu.setHasFixedSize(true);
@@ -79,6 +85,15 @@ public class MenuFragment extends Fragment {
                         //Because CategoryId is key,so we just get key of this item
                         foodList.putExtra("categoryId",adapter.getRef(position).getKey());
                         startActivity(foodList);
+                    }
+                });
+
+                //Button click on FAB
+                fab_cart.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent cartIntent = new Intent(getContext(), CartActivity.class);
+                        startActivity(cartIntent);
                     }
                 });
             }

@@ -86,6 +86,7 @@ public class SignInActivity extends BaseActivity {
                     User user = dataSnapshot.child(phoneWithoutPlus).getValue(User.class);
                     if (user.getPassword().equals(password)) {
                         Common.current_user = user; //store logged in user
+                        user.setPhone(edt_phone.getText().toString()); //set Phone
                         startActivity(new Intent(getApplicationContext(),MenuActivity.class));
                         SignInActivity.this.finish();
                         customType(SignInActivity.this,"left_to_right");

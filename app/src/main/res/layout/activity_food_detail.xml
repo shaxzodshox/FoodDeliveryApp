@@ -101,23 +101,30 @@
                         android:id="@+id/layout_price"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:src="@drawable/money_icon"
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        >
 
                         <TextView
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/food_price"
-                            android:layout_weight="9"
                             android:text="@string/_1000"
                             android:textColor="@color/colorPrimary"
                             android:textSize="@dimen/textSize_medium"
                             android:textStyle="bold"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sum"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:textColor="@android:color/holo_green_dark"
+                            android:textSize="@dimen/textSize_small"
+                            android:layout_marginStart="@dimen/margin_tiny"
                             />
 
 

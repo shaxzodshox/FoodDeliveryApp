@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,7 +17,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.shlsoft.fooddelivery.R;
+import com.shlsoft.fooddelivery.db.Database;
 import com.shlsoft.fooddelivery.model.Food;
+import com.shlsoft.fooddelivery.model.Order;
+import com.shlsoft.fooddelivery.util.Toasts;
 import com.squareup.picasso.Picasso;
 
 public class FoodDetailActivity extends AppCompatActivity {
@@ -32,6 +36,8 @@ public class FoodDetailActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference foods;
 
+    Food current_food;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +48,21 @@ public class FoodDetailActivity extends AppCompatActivity {
 
         //Init views
         initViews();
+
+        fab_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Database(getBaseContext()).addToCart(new Order(
+                        food_id,
+                        current_food.getName(),
+                        numberButton.getNumber(),
+                        current_food.getPrice(),
+                        current_food.getDiscount()
+                ));
+
+                Toasts.showSuccessToast(getString(R.string.taom_qoshildi));
+            }
+        });
     }
 
     private void initViews() {
@@ -59,10 +80,10 @@ public class FoodDetailActivity extends AppCompatActivity {
 
         //Get FoodId from Intent
 
-        if(getIntent() != null){
+        if (getIntent() != null) {
             food_id = getIntent().getStringExtra("foodId");
 
-            if(!food_id.isEmpty()){
+            if (!food_id.isEmpty()) {
                 getDetailFood(food_id);
             }
 
@@ -73,16 +94,16 @@ public class FoodDetailActivity extends AppCompatActivity {
         foods.child(food_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Food food = dataSnapshot.getValue(Food.class);
+                current_food = dataSnapshot.getValue(Food.class);
 
                 //SetImage
-                Picasso.get().load(food.getImage()).into(food_image);
+                Picasso.get().load(current_food.getImage()).into(food_image);
 
-                collapsingToolbarLayout.setTitle(food.getName());
+                collapsingToolbarLayout.setTitle(current_food.getName());
 
-                food_price.setText(food.getPrice());
-                food_name.setText(food.getName());
-                food_description.setText(food.getDescription());
+                food_price.setText(current_food.getPrice());
+                food_name.setText(current_food.getName());
+                food_description.setText(current_food.getDescription());
 
 
             }
