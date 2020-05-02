@@ -6,11 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".actvities.FoodListActivity">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/search_card_view"
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/margin_micro"
+        app:cardElevation="4dp"
+        android:layout_height="wrap_content">
+    <com.mancj.materialsearchbar.MaterialSearchBar
+        android:id="@+id/searchbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:mt_speechMode="false"
+        app:mt_hint="@string/qidirish"
+        app:mt_maxSuggestionsCount="5"
+        app:mt_navIconEnabled="false"
+        app:mt_placeholder="@string/_qidirish"
+        />
+    </androidx.cardview.widget.CardView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
         android:id="@+id/recyclerview"
+        android:layout_below="@id/search_card_view"
         />
 
 </RelativeLayout>

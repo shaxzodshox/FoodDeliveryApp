@@ -63,4 +63,6 @@ Oziq-ovqatlarni buyurtma qilish va ularni Toshkent shahrida yetkazib berish xizm
     <string name="manzil">manzil</string>
     <string name="buyurtma_raqami">#buyurtma raqami</string>
     <string name="buyurtma_id">Maxsus ID: </string>
+    <string name="qidirish">Taomni qidiring</string>
+    <string name="_qidirish">Qidirish</string>
 </resources>
