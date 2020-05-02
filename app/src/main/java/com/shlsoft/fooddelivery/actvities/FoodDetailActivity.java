@@ -98,7 +98,10 @@ public class FoodDetailActivity extends BaseActivity {
                 current_food = dataSnapshot.getValue(Food.class);
 
                 //SetImage
-                Picasso.get().load(current_food.getImage()).into(food_image);
+                Picasso.get()
+                        .load(current_food.getImage())
+                        .placeholder(R.drawable.food_placeholder)
+                        .into(food_image);
 
                 collapsingToolbarLayout.setTitle(current_food.getName());
 

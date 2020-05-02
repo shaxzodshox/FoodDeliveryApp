@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shlsoft.fooddelivery.R;
-import com.shlsoft.fooddelivery.interfaces.ItemClickListener;
 
 public class OrderViewHolder extends RecyclerView.ViewHolder{
 

@@ -75,7 +75,10 @@ public class MenuFragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull MenuViewHolder menuViewHolder, int i, @NonNull Category category) {
                 menuViewHolder.txtMenuName.setText(category.getName());
-                Picasso.get().load(category.getImage()).into(menuViewHolder.imgMenu);
+                Picasso.get()
+                        .load(category.getImage())
+                        .placeholder(R.drawable.food_placeholder)
+                        .into(menuViewHolder.imgMenu);
 
                 menuViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override

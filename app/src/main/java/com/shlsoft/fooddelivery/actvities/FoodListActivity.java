@@ -60,7 +60,10 @@ public class FoodListActivity extends BaseActivity {
             @Override
             protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull Food food) {
                 foodViewHolder.txtFoodName.setText(food.getName());
-                Picasso.get().load(food.getImage()).into(foodViewHolder.imgFood);
+                Picasso.get()
+                        .load(food.getImage())
+                        .placeholder(R.drawable.food_placeholder)
+                        .into(foodViewHolder.imgFood);
 
                 foodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
