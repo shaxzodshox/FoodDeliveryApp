@@ -1,5 +1,6 @@
 package com.shlsoft.fooddelivery.fragment;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,14 +9,18 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.shlsoft.fooddelivery.R;
 import com.shlsoft.fooddelivery.common.Common;
 import com.shlsoft.fooddelivery.model.Request;
@@ -39,6 +44,8 @@ public class OrderFragment extends Fragment {
     private FirebaseRecyclerAdapter<Request, OrderViewHolder> adapter;
     private FirebaseRecyclerOptions<Request> recyclerOptions;
 
+    private ProgressDialog progressDialog;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,6 +65,8 @@ public class OrderFragment extends Fragment {
         rv_order_status.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getContext());
         rv_order_status.setLayoutManager(layoutManager);
+
+        showLoadingProgress();
 
         loadOrders(Common.current_user.getPhone());
     }
@@ -85,6 +94,34 @@ public class OrderFragment extends Fragment {
 
         adapter.startListening();
         rv_order_status.setAdapter(adapter);
+
+        requests.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getChildrenCount() > 0){
+                    if(progressDialog != null && progressDialog.isShowing())
+                        progressDialog.dismiss();
+                }
+                else {
+                    /* If no data found  */
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressDialog.dismiss();
+                        }
+                    },2000);}}
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void showLoadingProgress() {
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage(getString(R.string.iltimos_kuting));
+        progressDialog.show();
     }
 
     private String convertCodeToStatus(String status) {

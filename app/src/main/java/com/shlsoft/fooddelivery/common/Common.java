@@ -5,3 +5,4 @@ import com.shlsoft.fooddelivery.model.User;
 public class Common {
     public static User current_user;
 }
+

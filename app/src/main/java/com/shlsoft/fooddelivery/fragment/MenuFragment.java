@@ -1,7 +1,9 @@
 package com.shlsoft.fooddelivery.fragment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.shlsoft.fooddelivery.R;
 import com.shlsoft.fooddelivery.actvities.CartActivity;
 import com.shlsoft.fooddelivery.actvities.FoodListActivity;
@@ -40,11 +45,12 @@ public class MenuFragment extends Fragment {
 
     private FloatingActionButton fab_cart;
 
+    private ProgressDialog progressDialog;
+
     DatabaseReference databaseReference;
 
     FirebaseRecyclerOptions<Category> category_options;
     FirebaseRecyclerAdapter<Category,MenuViewHolder> adapter;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,6 +69,8 @@ public class MenuFragment extends Fragment {
         recycler_menu.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getContext());
         recycler_menu.setLayoutManager(layoutManager);
+
+        showLoadingProgress();
 
         //InitFirebase
         databaseReference = FirebaseDatabase.getInstance().getReference("Category");
@@ -105,12 +113,42 @@ public class MenuFragment extends Fragment {
             @Override
             public MenuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.menu_item,parent,false);
-
                 return new MenuViewHolder(view);
             }
         };
         adapter.startListening();
         recycler_menu.setAdapter(adapter);
+
+        //onDataChange called to remove progress bar..make a call to dataSnapshot.getChildrenCount() and based
+        //on returned value hide progressbar
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getChildrenCount() > 0){
+                    if(progressDialog != null && progressDialog.isShowing())
+                    progressDialog.dismiss();
+                }
+                else {
+                    /* If no data found  */
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressDialog.dismiss();
+                        }
+                    },2000);}}
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void showLoadingProgress() {
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage(getString(R.string.iltimos_kuting));
+        progressDialog.show();
     }
 
     @Override
@@ -137,4 +175,5 @@ public class MenuFragment extends Fragment {
             adapter.startListening();
         }
     }
+
 }

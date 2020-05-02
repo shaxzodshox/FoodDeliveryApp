@@ -5,16 +5,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.shlsoft.fooddelivery.R;
 import com.shlsoft.fooddelivery.app.BaseActivity;
 import com.shlsoft.fooddelivery.interfaces.ItemClickListener;
@@ -34,6 +39,8 @@ public class FoodListActivity extends BaseActivity {
     FirebaseRecyclerOptions<Food> food_options;
     FirebaseRecyclerAdapter<Food, FoodViewHolder> food_adapter;
 
+    private ProgressDialog progressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +51,8 @@ public class FoodListActivity extends BaseActivity {
         recycler_food.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recycler_food.setLayoutManager(layoutManager);
+
+        showLoadingProgress();
 
         if(getIntent() != null){
             categoryId = getIntent().getStringExtra("categoryId");
@@ -86,7 +95,36 @@ public class FoodListActivity extends BaseActivity {
         };
         food_adapter.startListening();
         recycler_food.setAdapter(food_adapter);
+
+        food_db_reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getChildrenCount() > 0){
+                    if(progressDialog != null && progressDialog.isShowing())
+                        progressDialog.dismiss();
+                }
+                else {
+                    /* If no data found  */
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressDialog.dismiss();
+                        }
+                    },2000);}}
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
+
+    private void showLoadingProgress() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage(getString(R.string.iltimos_kuting));
+        progressDialog.show();
+    }
+
 
     @Override
     public void onStart() {
