@@ -1,34 +1,31 @@
-package com.shlsoft.fooddelivery.fragment;
-
-import android.os.Bundle;
+package com.shlsoft.fooddelivery.actvities;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.shlsoft.fooddelivery.R;
+import com.shlsoft.fooddelivery.app.BaseActivity;
 import com.shlsoft.fooddelivery.common.Common;
+import com.shlsoft.fooddelivery.interfaces.ItemClickListener;
 import com.shlsoft.fooddelivery.model.Request;
+import com.shlsoft.fooddelivery.util.Toasts;
 import com.shlsoft.fooddelivery.view_holder.OrderViewHolder;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class OrderFragment extends Fragment {
+import es.dmoral.toasty.Toasty;
 
-    public OrderFragment() {
-        // Required empty public constructor
-    }
+public class OrderStatusActivity extends BaseActivity {
 
     public RecyclerView rv_order_status;
     public RecyclerView.LayoutManager layoutManager;
@@ -40,26 +37,22 @@ public class OrderFragment extends Fragment {
     private FirebaseRecyclerOptions<Request> recyclerOptions;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_order, container, false);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_order_status);
 
         //Firebase
         database = FirebaseDatabase.getInstance();
         requests = database.getReference("Requests");
 
-        rv_order_status = view.findViewById(R.id.rv_order_status);
+        rv_order_status = findViewById(R.id.rv_order_status);
         rv_order_status.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(getContext());
+        layoutManager = new LinearLayoutManager(this);
         rv_order_status.setLayoutManager(layoutManager);
 
         loadOrders(Common.current_user.getPhone());
+
+
     }
 
     private void loadOrders(String phone) {
@@ -68,8 +61,8 @@ public class OrderFragment extends Fragment {
 
         adapter = new FirebaseRecyclerAdapter<Request, OrderViewHolder>(recyclerOptions) {
             @Override
-            protected void onBindViewHolder(@NonNull OrderViewHolder orderViewHolder, int i, @NonNull Request request) {
-                orderViewHolder.tv_order_id.setText(getString(R.string.buyurtma_id) + adapter.getRef(i).getKey());
+            protected void onBindViewHolder(@NonNull OrderViewHolder orderViewHolder, int i, @NonNull final Request request) {
+                orderViewHolder.tv_order_id.setText(adapter.getRef(i).getKey());
                 orderViewHolder.tv_order_status.setText(convertCodeToStatus(request.getStatus()));
                 orderViewHolder.tv_order_address.setText(request.getAddress());
                 orderViewHolder.tv_order_phone.setText(request.getPhone());
@@ -96,4 +89,34 @@ public class OrderFragment extends Fragment {
             return "Buyurtma yetkazildi";
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(adapter != null){
+            adapter.startListening();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        if(adapter != null){
+            adapter.stopListening();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(adapter != null){
+            adapter.startListening();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        overridePendingTransition(0,0);
+    }
 }

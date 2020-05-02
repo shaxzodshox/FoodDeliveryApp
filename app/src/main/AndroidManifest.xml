@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".actvities.CartActivity"></activity>
+        <activity android:name=".actvities.OrderStatusActivity"></activity>
+        <activity android:name=".actvities.CartActivity" />
         <activity android:name=".actvities.FoodDetailActivity" />
         <activity android:name=".actvities.FoodListActivity" />
         <activity android:name=".actvities.PhoneVerificationActivity" />

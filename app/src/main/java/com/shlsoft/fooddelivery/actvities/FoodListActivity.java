@@ -62,8 +62,6 @@ public class FoodListActivity extends BaseActivity {
                 foodViewHolder.txtFoodName.setText(food.getName());
                 Picasso.get().load(food.getImage()).into(foodViewHolder.imgFood);
 
-                final Food clicked_food = food;
-
                 foodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
@@ -71,7 +69,6 @@ public class FoodListActivity extends BaseActivity {
                         Intent foodDetail = new Intent(FoodListActivity.this, FoodDetailActivity.class);
                         foodDetail.putExtra("foodId",food_adapter.getRef(position).getKey());
                         startActivity(foodDetail);
-                        finish();
                     }
                 });
 

@@ -4,8 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/margin_normal"
     tools:context=".actvities.CartActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:title="@string/xarid_savati"
+        android:background="@color/colorPrimary"
+        app:titleTextColor="@android:color/white"
+        app:navigationIcon="@drawable/back_icon"
+        />
+
+    <RelativeLayout
+        android:padding="@dimen/margin_normal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listCart"
@@ -68,5 +84,7 @@
 
 
     </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
 
 </RelativeLayout>

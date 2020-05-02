@@ -36,7 +36,7 @@ Oziq-ovqatlarni buyurtma qilish va ularni Toshkent shahrida yetkazib berish xizm
     <string name="open">Open navigation</string>
     <string name="close">Close navigation</string>
     <string name="taomlar_menyusi">Taomlar menyusi</string>
-    <string name="xarid_kartasi">Xarid savati</string>
+    <string name="xarid_savati">Xarid savati</string>
     <string name="buyurtmalar">Buyurtmalar</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -58,4 +58,9 @@ Oziq-ovqatlarni buyurtma qilish va ularni Toshkent shahrida yetkazib berish xizm
     <string name="qaytish">Qaytish</string>
     <string name="yetkazish_manzilini_kiriting">Iltimos yetkazib berish joyini kiriting</string>
     <string name="buyurtma_uchun_rahmat">Buyurtmangiz uchun rahmat!</string>
+    <string name="holat">holat</string>
+    <string name="phone_example">+99890123456</string>
+    <string name="manzil">manzil</string>
+    <string name="buyurtma_raqami">#buyurtma raqami</string>
+    <string name="buyurtma_id">Maxsus ID: </string>
 </resources>

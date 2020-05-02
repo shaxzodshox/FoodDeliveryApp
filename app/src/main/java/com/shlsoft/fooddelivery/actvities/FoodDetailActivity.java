@@ -105,8 +105,6 @@ public class FoodDetailActivity extends BaseActivity {
                 food_price.setText(current_food.getPrice());
                 food_name.setText(current_food.getName());
                 food_description.setText(current_food.getDescription());
-
-
             }
 
             @Override
@@ -114,6 +112,5 @@ public class FoodDetailActivity extends BaseActivity {
 
             }
         });
-
     }
 }

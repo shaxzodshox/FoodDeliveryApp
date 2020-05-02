@@ -2,6 +2,7 @@ package com.shlsoft.fooddelivery.actvities;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -60,6 +61,16 @@ public class CartActivity extends BaseActivity {
         tv_total_price = findViewById(R.id.tv_total);
         btn_place_order = findViewById(R.id.btnPlaceOrder);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         loadListFood();
 
         btn_place_order.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +92,7 @@ public class CartActivity extends BaseActivity {
         );
         edtAddress.setLayoutParams(lp);
         builder.setView(edtAddress);
-        builder.setIcon(R.drawable.ic_cart);
+        builder.setIcon(R.drawable.location_icon);
         builder.setPositiveButton(getString(R.string.buyurtma), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

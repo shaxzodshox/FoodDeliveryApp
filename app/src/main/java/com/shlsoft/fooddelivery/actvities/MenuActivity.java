@@ -1,6 +1,7 @@
 package com.shlsoft.fooddelivery.actvities;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,11 +21,10 @@ import com.google.android.material.navigation.NavigationView;
 import com.shlsoft.fooddelivery.R;
 import com.shlsoft.fooddelivery.app.BaseActivity;
 import com.shlsoft.fooddelivery.common.Common;
-import com.shlsoft.fooddelivery.fragment.CartFragment;
 import com.shlsoft.fooddelivery.fragment.MenuFragment;
 import com.shlsoft.fooddelivery.fragment.OrderFragment;
 
-public class MenuActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MenuActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     Toolbar toolbar;
     DrawerLayout drawerLayout;
@@ -33,7 +33,6 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
 
     //Name of the current user
     private TextView tv_username;
-
 
 
     @Override
@@ -49,8 +48,8 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
         loadFragment(new MenuFragment());
 
         drawerLayout = findViewById(R.id.drawerLayout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,
-                R.string.open,R.string.close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
+                R.string.open, R.string.close);
 
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -92,37 +91,49 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.nav_menu:
                 setTitle(getString(R.string.taomlar));
                 loadFragment(new MenuFragment());
                 break;
             case R.id.nav_cart:
-                setTitle(getString(R.string.xarid_kartasi));
-                loadFragment(new CartFragment());
+                setTitle(getString(R.string.xarid_savati));
+                Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+                startActivity(intent);
                 break;
             case R.id.nav_orders:
                 setTitle(getString(R.string.buyurtmalar));
                 loadFragment(new OrderFragment());
                 break;
             case R.id.nav_sign_out:
-                // TODO: 27.04.2020 implement sign out
+                Intent signIn = new Intent(getApplicationContext(), MainActivity.class);
+                signIn.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(signIn);
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    private void loadFragment(Fragment fragment){
+    private void loadFragment(Fragment fragment) {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.frame_container,fragment);
+        transaction.replace(R.id.frame_container, fragment);
         transaction.commit();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        overridePendingTransition(0, 0);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         overridePendingTransition(0,0);
+        loadFragment(new MenuFragment());
+        navigationView.getMenu().getItem(0).setChecked(true);
+        setTitle(R.string.taomlar);
     }
 }
